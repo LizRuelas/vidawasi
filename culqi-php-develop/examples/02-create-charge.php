@@ -17,7 +17,10 @@ try {
         "amount" => $_POST["monto_back"],
         "currency_code" =>  $_POST["newCurrency"],
         "email" => $_POST["email"],
-        "source_id" => $_POST["token"]
+        "source_id" => $_POST["token"],
+        "metadata" => array(
+          "nombre" =>  $_POST["name"] ,
+        ),
       )
   );
   // Response

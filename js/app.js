@@ -8,6 +8,8 @@
 		var typeDonar = 'ÚNICA'
 
 		var inputAmount = document.getElementById('amount');
+
+		var amountFinal = null;
 			//jQuery time
 			var current_fs, next_fs, previous_fs; //fieldsets
 			var left, opacity, scale; //fieldset properties which we will animate
@@ -23,19 +25,23 @@
 					inputAmount.style.display = "none";
 				}
 
-				console.log(amount)
 		});
 
 		$(".btn-group > label.btnCurrency").on("click", function(event){
 			currency = this.innerText
-
 		});
 
 		$(".btn-group > label.typeDonar").on("click", function(event){
 			typeDonar = this.innerText
+		});
 
-			console.log(amount)
-
+		$("#botonDescription").on("click", function(event){
+ 
+			if(amount == 'OTRO MONTO'){
+				amountFinal = inputAmount.value;
+			} else {
+				amountFinal = amount;
+			}
 		});
 
 		function validFormPerson(){
@@ -50,7 +56,7 @@
 			var address = document.getElementById('address').value;
 	
 			if (number == '' || name == '' || lastName == '' || email == '' || phone == ''  || city == '' || address== '') {
-				console.log('NO')
+				alert('Por favor, asegurate de completar todos los campos')
 				return false
 			} else {
 				console.log('SI')
@@ -59,8 +65,7 @@
 		}
 
 		$("#resumen").click(function(){
-			validFormPerson()
-			console.log(	validFormPerson())
+			// validFormPerson()
 			if(validFormPerson() == true) {
 				if (animating) return false;
 					animating = true;
@@ -106,9 +111,10 @@
 					var name = document.getElementById('name').value;
 					var lastName = document.getElementById('lastName').value;
 					
-					console.log(amount)
-					$('#r_name').text(name + ' ' + lastName);
-					$('#r_montoTotal').text(amount + ' ' + currency)
+					
+
+					// $('#r_name').text(name + ' ' + lastName);
+					$('#r_montoTotal').text(amountFinal + ' ' + currency)
 					$('#r_typeDonation').text(typeDonar)
 
 			}

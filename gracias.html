@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gracias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+
+</head>
+<body>
+
+	<div class="banner-inicio">
+    <div class="container div-agradecimiento">
+    	<div class="row">
+    		<div class="col-sm-6 div-gracias">
+    			<p class="titulo-gracias">Gracias</p>
+    			<p class="subtitulo-gracias">por tu donación</p>
+    		</div>
+    		<div class="col-sm-6 div-datos">
+    			<p class="Titulo-seccion">Tu ayuda nos hace imparables</p>
+    			<p class="subtitulo-seccion">Para seguir construyendo el primer hospital de pediatría especializada y cáncer infantil del Perú.</p>
+    			<div class="datos">
+    				<p>Detalle de la operación exitosa:</p>
+    				<!-- <p id="txtnombre">Nombre:  <?php echo $name; ?></p>
+    				<p id="txtapellido">Apellido:  <?php echo $apellido; ?></p>
+    				<p id="txtcargo">Cargo:  <?php echo $cargo; ?></p>
+    				<p id="txtmoneda">Moneda:  <?php echo $moneda_plan; ?></p>
+						<p id="txtmonto">Monto:  <?php echo $monto; ?> </p>
+						 -->
+
+						<p>Nombre: <span id="finalName"></span> </p> 
+					</div>
+
+    			<a href="https://www.vidawasiperu.org/inicio"><p class="Titulo-seccion">Inicio</p></a>
+    		</div>
+    	</div>
+    </div>
+</div>
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+
+	body {
+		background-image: url(https://www.vidawasiperu.org/wp-content/uploads/2020/10/Construccion-WEB-1-scaled.jpg);
+		height: 100vh;
+		min-height: 600px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		font-family: 'Montserrat', sans-serif;
+
+	}
+	.subtitulo-seccion{
+		text-align: center;
+    	font-weight: 500;
+	}
+	.datos{
+		line-height: 10px;
+	    font-weight: 700;
+	    text-align: center;
+	    margin-bottom: 35px;
+	    margin-top: 35px;
+	}
+	.Titulo-seccion{
+		color: #E73D5C;
+	    text-transform: uppercase;
+	    text-align: center;
+	    font-weight: 800;
+	    font-size: 20px;
+	    margin-bottom: 25px;
+	}
+	.carousel-fullscreen .carousel-caption {
+		display: none !important;
+	}
+	.cnt-carousel .sociales{
+		display: none !important;
+	}
+	.div-agradecimiento{
+		position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+	}
+	.div-gracias {
+		position: relative;
+		z-index: 5;
+		padding: 155px 50px;
+		/* height: 387px; */
+	}
+
+	.div-gracias::before {
+	    content: "";
+	    position: absolute;
+	    z-index: -1;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    opacity: .5;
+	    background: black;
+	}
+	.div-datos{
+		background: white;
+		padding: 30px 25px;
+	}
+	.titulo-gracias{
+		color: #F3C20F;
+	    font-weight: 900;
+	    font-size: 60px;
+	    text-transform: uppercase;
+	    line-height: 30px;
+	}
+	.subtitulo-gracias{
+		color: white;
+	    font-weight: 900;
+	    font-size: 47px;
+	}
+</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+	<script src="js/culqi.js" ></script>
+	<script>
+		// $(document).ready(function (){
+		// 	console.log('hola gracias')
+		// 	function LoadIndex(){
+		// 		console.log('hola gracias')
+				
+    //     var component = 'index.html';
+        
+    //     $.ajax({
+    //         mimeType: 'text/html; charset=utf-8', 
+    //         url: component,
+    //         type: 'GET',
+    //         dataType: "html",
+    //         async: true,
+    //         success: function(data) {
+		// 						console.log(data)
+							
+    //         },
+    //         error: function (jqXHR, textStatus, errorThrown) {
+    //             alert(errorThrown);
+    //         }
+    //     });        
+		// 	};
+			
+		// 	LoadIndex()
+		// })
+	</script>
+</body>
+</html>

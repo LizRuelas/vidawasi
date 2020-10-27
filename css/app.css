@@ -1,40 +1,48 @@
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300i,400,400i,500,700,900");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+body {
+  font-family: 'Montserrat', sans-serif;
+}
 .multi_step_form {
   display: block;
-  overflow: hidden;
+  /* overflow: hidden; */
   
 }
 .background_aws {
-  background-image: url(banner_bg.jpg);
-  height: 100%;
-  background-size: contain; 
+  background-image: url(donacion_bg.jpg);
+  height: 910px;
+  background-position: right;
+  background-position-x: -300px;
 }
 .multi_step_form #msform {
   text-align: center;
   position: relative;
-  padding-top: 50px;
-  min-height: 820px;
-  max-width: 810px;
+  padding: 40px 0;
+  min-height: 650px;
+  max-width: 680px;
   margin: 0 auto;
   z-index: 1;
+  background-color: white;
+  border-radius: 2%;
+  top: 100px;
 }
 .multi_step_form #msform .tittle {
   text-align: center;
   padding-bottom: 55px;
 }
 .multi_step_form #msform .tittle h2 {
-  font: 500 24px/35px "Roboto", sans-serif;
+  font: 500 24px/35px "Montserrat", sans-serif;
   color: #3f4553;
   padding-bottom: 5px;
 }
 .multi_step_form #msform .tittle p {
-  font: 400 16px/28px "Roboto", sans-serif;
+  font: 400 16px/28px "Montserrat", sans-serif;
   color: #5f6771;
 }
 .multi_step_form #msform fieldset {
   border: 0;
-  padding: 20px 0px 0;
+  padding: 35px 10px;
   position: relative;
   width: 100%;
   left: 0;
@@ -44,11 +52,11 @@
   display: none;
 }
 .multi_step_form #msform fieldset h3 {
-  font: 500 18px/35px "Roboto", sans-serif;
+  font: 500 18px/35px "Montserrat", sans-serif;
   color: #3f4553;
 }
 .multi_step_form #msform fieldset h6 {
-  font: 400 15px/28px "Roboto", sans-serif;
+  font: 400 15px/28px "Montserrat", sans-serif;
   color: #5f6771;
   padding-bottom: 30px;
 }
@@ -97,7 +105,7 @@
   border: 1px solid #d8e1e7;
   padding: 0 20px;
   height: 40px;
-  font: 400 15px/48px "Roboto", sans-serif;
+  font: 400 15px/48px "Montserrat", sans-serif;
   color: #5f6771;
   box-shadow: none;
   outline: none;
@@ -198,7 +206,7 @@
   text-align: center;
 }
 .multi_step_form #msform fieldset .passport h4 {
-  font: 500 15px/23px "Roboto", sans-serif;
+  font: 500 15px/23px "Montserrat", sans-serif;
   color: #5f6771;
   padding: 0;
 }
@@ -213,7 +221,7 @@
   width: 168px;
   border-radius: 5px;
   cursor: pointer;
-  font: 700 14px/40px "Roboto", sans-serif;
+  font: 700 14px/40px "Montserrat", sans-serif;
   border: 1px solid #99a2a8;
   text-align: center;
   transition: all 300ms linear 0s;
@@ -237,7 +245,7 @@
   padding-bottom: 60px;
 }
 .multi_step_form #msform fieldset .file_added li {
-  font: 400 15px/28px "Roboto", sans-serif;
+  font: 400 15px/28px "Montserrat", sans-serif;
   color: #5f6771;
 }
 .multi_step_form #msform fieldset .file_added li a {
@@ -265,7 +273,7 @@
   width: calc(100%/3);
   float: left;
   position: relative;
-  font: 500 13px/1 "Roboto", sans-serif;
+  font: 500 13px/1 "Montserrat", sans-serif;
 }
 .multi_step_form #msform #progressbar li:nth-child(2):before {
   content: "\f213";
@@ -335,7 +343,7 @@
 .form_user label{
   float: left;
   /* color: #E62F32; */
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -361,4 +369,8 @@
 
 #amount {
 	display: none;
+}
+
+.bg-white {
+  color: #ffffff !important;
 }

@@ -1,22 +1,22 @@
 <?php
-/**
- * Ejemplo 2
- * Como crear un charge a una tarjeta usando Culqi PHP.
- */
+header('Content-Type: application/json');
+
+require '../Requests-master/library/Requests.php';
+Requests::register_autoloader();
+require '../lib/culqi.php';
+
+use Culqi\Culqi;
+
+$SECRET_API_KEY = 'sk_test_ycVwQxv6MwqDPHjc';
+
+$culqi = new Culqi(array('api_key' => $SECRET_API_KEY));
 
 try {
-  // Usando Composer (o puedes incluir las dependencias manualmente)
-  require '../vendor/autoload.php';
-
-  // Configurar tu API Key y autenticación
-  $SECRET_API_KEY = "{llave}";
-  $culqi = new Culqi\Culqi(array('api_key' => $SECRET_API_KEY));
-
   // Creando Cargo a una tarjeta
   $card = $culqi->Cards->create(
     array(
-      "customer_id" => "{customer_id}",
-      "token_id" => "{token_id}"
+      "customer_id" => $_POST["customerId"],
+      "token_id" => $_POST["tokenId"]
     )
   );
   // Respuesta

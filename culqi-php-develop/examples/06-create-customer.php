@@ -1,30 +1,38 @@
 <?php
-/**
- * Ejemplo 6
- * Como crear un customer usando Culqi PHP.
- */
+
+header('Content-Type: application/json');
+
+require '../Requests-master/library/Requests.php';
+Requests::register_autoloader();
+require '../lib/culqi.php';
+
+use Culqi\Culqi;
+
+$SECRET_API_KEY = 'sk_test_ycVwQxv6MwqDPHjc';
+
+$culqi = new Culqi(array('api_key' => $SECRET_API_KEY));
+
 
 try {
-  // Usando Composer (o puedes incluir las dependencias manualmente)
-  require '../vendor/autoload.php';
-
-  // Configurar tu API Key y autenticación
-  $SECRET_API_KEY = "{llave}";
-  $culqi = new Culqi\Culqi(array('api_key' => $SECRET_API_KEY));
-
   // Creando Cargo a una tarjeta
   $customer = $culqi->Customers->create(
       array(
         "address" => $_POST["address"],
-        "address_city" => $_POST["address_c"],
-        "country_code" => $_POST["country"],
+        "address_city" => $_POST["city"],
+        // "country_code" => $_POST["country"],
+        "country_code" => "PE",
         "email" => $_POST["email"],
-        "first_name" => $_POST["f_name"],
-        "last_name" => $_POST["l_name"],
-        "phone_number" => $_POST["phone"]
+        "first_name" => $_POST["first_name"],
+        "last_name" => $_POST["last_name"],
+        "phone_number" => $_POST["phone_number"],
+        "metadata" => array(
+          "tipo_documento" =>  $_POST["typeDocument"] ,
+          "numero_documento" =>  $_POST["numberDocument"]
+        ),
       )
   );
   // Respuesta
+
   echo json_encode($customer);
 
 } catch (Exception $e) {

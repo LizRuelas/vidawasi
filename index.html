@@ -15,8 +15,9 @@
 <body>
    <!-- Multi step form --> 
   <section class="multi_step_form background_aws">  
-    <form id="msform"> 
-    <!-- Tittle -->
+    <form id="msform">
+      <div>
+         <!-- Tittle -->
     <!-- <div class="tittle">
       <img src="https://communityday.aws.pe/images/logo.png" alt="">
       <img src="https://communityday.aws.pe/images/banner_bg.jpg" alt="">
@@ -103,7 +104,7 @@
 
       </div> 
       <!-- <button type="button" class="action-button previous_button" style="margin-bottom: 10px">Atrás</button> -->
-      <button type="button" class="next action-button">Continuar</button>  
+      <button type="button" class="next action-button" id="botonDescription">Continuar</button>  
     </fieldset>
 
     <fieldset>
@@ -179,8 +180,8 @@
             </div>
             <div class="col-sm">
               <div class="form-group form_user">
-                <label for="">Dirección</label>
-                <input class="form-control" id="address">
+                <label >Dirección</label>
+                <input type="text" value="" class="form-control" id="address">
               </div>
             </div>
           </div>
@@ -194,16 +195,18 @@
 
     <fieldset>
       <div class="form-group">
-        <h4 style="color:#FBC430">RESUMEN</h4>
+        <h3 style="color:#FBC430">RESUMEN</h3>
         <div class="resumen">
-          <label>Nombre de donante: <span id="r_name"></span></label><br>
+          <!-- <label>Nombre de donante: <span id="r_name"></span></label><br> -->
           <label>Tipo de donación: <span id="r_typeDonation"></span></label><br>
           <label>Monto a Donar: <span id="r_montoTotal"></span></label>
         </div>
       </div>
       <button type="button" class="action-button previous previous_button" style="margin-bottom: 10px">Atrás</button> 
-      <a id="culqi" class="action-button">PAGAR</a>     
+      <a id="culqi" class="action-button">DONAR</a>     
     </fieldset>  
+      </div>
+   
     </form>  
   </section> 
   <!-- End Multi step form --> 
