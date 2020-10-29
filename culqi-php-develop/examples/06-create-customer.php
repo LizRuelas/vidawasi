@@ -19,8 +19,8 @@ try {
       array(
         "address" => $_POST["address"],
         "address_city" => $_POST["city"],
-        // "country_code" => $_POST["country"],
-        "country_code" => "PE",
+        "country_code" => $_POST["country"],
+        //"country_code" => "PE",
         "email" => $_POST["email"],
         "first_name" => $_POST["first_name"],
         "last_name" => $_POST["last_name"],

@@ -7,6 +7,8 @@ var myData = null;
 var amountFinal = null;
 var other = null;
 
+var checkTerms = false;
+
 $(".btn-group > label.amountSelect").on("click", function(event){
   amount = this.innerText
   console.log(amount)
@@ -29,61 +31,79 @@ $(".btn-group > label.typeDonar").on("click", function(event){
   typeDonar = this.innerText
 });
 
+$("#checkbox1").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'true');
+  } else {
+    $(this).attr('value', 'false');
+  }
+  
+  console.log($('#checkbox1').val())
+   checkTerms = $('#checkbox1').val();
+});
+
 $('#culqi').on('click', function (e) {
 
+  console.log(typeof checkTerms)
+  if(checkTerms == 'true') {
+    
   //customer
-var address = document.getElementById('address').value;
-var city = document.getElementById('city').value;
-var country = document.getElementById('country').value;
-var email = document.getElementById('email').value; 
-var first_name = document.getElementById('name').value; 
-var last_name = document.getElementById('lastName').value; 
-var phone_number = document.getElementById('phone').value; 
-var typeDocument = document.getElementById('typeDocument').value; 
-var numberDocument = document.getElementById('number').value; 
-myData = { 
-  address : address,
-  city : city,
-  country:  country,
-  email: email , 
-  first_name: first_name , 
-  last_name: last_name, 
-  phone_number: phone_number, 
-  typeDocument: typeDocument, 
-  numberDocument: numberDocument
-}
-
-  if(currency == 'SOLES') {
-    newCurrency = 'PEN'
-
-  } else if(currency == 'DOLARES'){
-    newCurrency = 'USD'
+  var address = document.getElementById('address').value;
+  var city = document.getElementById('city').value;
+  var country = document.getElementById('country').value;
+  var email = document.getElementById('email').value; 
+  var first_name = document.getElementById('name').value; 
+  var last_name = document.getElementById('lastName').value; 
+  var phone_number = document.getElementById('phone').value; 
+  var typeDocument = document.getElementById('typeDocument').value; 
+  var numberDocument = document.getElementById('number').value; 
+  myData = { 
+    address : address,
+    city : city,
+    country:  country,
+    email: email , 
+    first_name: first_name , 
+    last_name: last_name, 
+    phone_number: phone_number, 
+    typeDocument: typeDocument, 
+    numberDocument: numberDocument
   }
 
-  if(amount == 'OTRO MONTO') {
-    amountFinal = other;
-  } else {
-    amountFinal = amount;
-  }
+    if(currency == 'SOLES') {
+      newCurrency = 'PEN'
 
-  console.log(amountFinal, 'CLICK')
-
-  Culqi.publicKey = 'pk_test_8b2xvAw3SCrbpPov'
-
-  Culqi.options({
-    style: {
-      logo: 'https://www.vidawasiperu.org/wp-content/themes/tema_vidawasi/favicon/apple-touch-icon.png',
-      maincolor: '#ED2446'
+    } else if(currency == 'DOLARES'){
+      newCurrency = 'USD'
     }
-  });
-  Culqi.settings({
-    title: 'VIDAWASI',
-    currency: newCurrency,
-    description: 'Donación' + typeDonar,
-    amount: amountFinal * 100
-  });
-  Culqi.open();
-  e.preventDefault();
+
+    if(amount == 'OTRO MONTO') {
+      amountFinal = other;
+    } else {
+      amountFinal = amount;
+    }
+
+    console.log(amountFinal, 'CLICK')
+
+    Culqi.publicKey = 'pk_test_8b2xvAw3SCrbpPov'
+
+    Culqi.options({
+      style: {
+        logo: 'https://www.vidawasiperu.org/wp-content/themes/tema_vidawasi/favicon/apple-touch-icon.png',
+        maincolor: '#ED2446'
+      }
+    });
+    Culqi.settings({
+      title: 'VIDAWASI',
+      currency: newCurrency,
+      description: 'Donación ' + typeDonar,
+      amount: amountFinal * 100
+    });
+
+    
+    Culqi.open();
+    e.preventDefault();
+  } 
+
 }); 
 
 
@@ -101,7 +121,7 @@ function culqi() {
     $.ajax({
       type: 'POST',
       url: 'http://localhost/vidawasi/culqi-php-develop/examples/02-create-charge.php',
-      data: { token: Culqi.token.id  , email: Culqi.token.email , monto_back ,newCurrency , name: myData.first_name },
+      data: { token: Culqi.token.id  , email: Culqi.token.email , monto_back ,newCurrency , nombre: myData.first_name , apellido: myData.last_name },
       datatype: 'json',
       success: function(data) {
         var result = "";
@@ -113,26 +133,16 @@ function culqi() {
           }
         if(result.object === 'charge'){
           alert('La transacción ha sido completamente exitosa');
-          console.log(' result.metadata.nombre' +  result.metadata.nombre)
+          console.log(result)
 
-          $('#finalName').text(result.metadata.nombre )
+  
+          localStorage.setItem('nombre', myData.first_name);
+          localStorage.setItem('apellido', myData.last_name);
+          localStorage.setItem('cargo', typeDonar);
+          localStorage.setItem('moneda', result.currency_code);
+          localStorage.setItem('monto', result.amount / 100);
 
           $(window).attr('location','http://localhost/vidawasi/gracias.html')
-
-          // $.ajax({
-          //   type: 'POST',
-          //   url: 'http://localhost/vidawasi/gracias.php',
-          //   data: { result },
-          //   datatype: 'json',
-          //   success: function(data) {
-          //     console.log(data)
-              
-          //   },
-          //   error: function(error) {
-          //     console.log(error)
-          //     alert(error)
-          //   }
-          // });
 
         }
         if(result.object === 'error'){
@@ -145,9 +155,9 @@ function culqi() {
       }
     });
   } else if(Culqi.token && typeDonar == 'MENSUAL') {
-    // $(document).ajaxStart(function(){
-    //   run_waitMe();
-    // });
+    $(document).ajaxStart(function(){
+      run_waitMe();
+    });
     console.log(Culqi.token.id ,'MENSUAL')
     var tokenId = Culqi.token.id;
     
@@ -160,7 +170,8 @@ function culqi() {
       datatype: 'json',
       success: function(data) {
         var customerId = data.id;
-        $.ajax({
+        if (customerId) {
+          $.ajax({
           type: 'POST',
           url: 'http://localhost/vidawasi/culqi-php-develop/examples/07-create-card.php',
           data: { tokenId , customerId },
@@ -168,7 +179,8 @@ function culqi() {
           success: function(data) {
             console.log(data.id)
             var cardId = data.id;
-            $.ajax({
+            if(cardId){
+              $.ajax({
               type: 'POST',
               url: 'http://localhost/vidawasi/culqi-php-develop/examples/03-create-plan.php',
               data: { monto_back , newCurrency , },
@@ -176,37 +188,74 @@ function culqi() {
               success: function(data) {
                 console.log(data.id)
                 var planId = data.id;
+                if(planId){
+
+                
                 $.ajax({
                   type: 'POST',
                   url: 'http://localhost/vidawasi/culqi-php-develop/examples/04-create-subscription.php',
                   data: { cardId, planId },
                   datatype: 'json',
                   success: function(data) {
-                    console.log(data)
-                    console.log(data.id)
-                    // $(window).attr('location','http://localhost/vidawasi/gracias.php')
-
+                    console.log(data.charges[0])
                     
-                   
+                    if(data.id) {
+
+                      alert('La transacción ha sido exitosa')
+                      localStorage.setItem('nombre', myData.first_name);
+                      localStorage.setItem('apellido', myData.last_name);
+                      localStorage.setItem('cargo', typeDonar);
+                      localStorage.setItem('moneda', data.charges[0].currency_code);
+                      localStorage.setItem('monto', data.charges[0].amount / 100);
+
+                      $(window).attr('location','http://localhost/vidawasi/gracias.html')
+                    } else {
+                      $('body').waitMe('hide');
+                      alert(data)
+                    }
                   },
                   error: function(error) {
                     console.log(error)
                     alert(error)
                   }
                 });
+              
+                } else {
+                  $('body').waitMe('hide');
+                  alert(data)
+                }
               },
                 error: function(error) {
                   console.log(error)
                   alert(error)
                 }
               });
+            } else {
+              $('body').waitMe('hide');
+              alert(data)
+            }
           },
           error: function(error) {
-            console.log(error)
-            alert(error)
+            $('body').waitMe('hide');
+            console.log(error.responseText)
+            alert(error.responseText)
           }
         });
+        } else {
+          $('body').waitMe('hide');
 
+          var resultCustomer = "";
+          if(data.constructor == String){
+            resultCustomer = JSON.parse(data);
+          }
+          if(data.constructor == Object){
+            resultCustomer = JSON.parse(JSON.stringify(data));
+          }
+          console.log(resultCustomer)
+
+          const mensaje = resultCustomer['merchant_message']
+          alert(mensaje + ' Por favor, usar otro correo en tus datos personales')
+        }
       },
       error: function(error) {
         console.log(error)
@@ -214,29 +263,11 @@ function culqi() {
       }
     });
     
-      
-
-
-    // $.ajax({
-    //   type: 'POST',
-    //   url: 'http://localhost/vidawasi/culqi-php-develop/examples/02-create-charge.php',
-    //   data: { token: Culqi.token.id  , email: Culqi.token.email , monto_back ,newCurrency },
-    //   datatype: 'json',
-    //   success: function(data) {
-    //    
-    //   },
-    //   error: function(error) {
-    //     resultdiv(error)
-    //   }
-    // });
   }
    else {
     alert(Culqi.error.merchant_message);
     $('body').waitMe('hide');
   }
-
-
-
   
 };
   

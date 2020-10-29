@@ -16,7 +16,8 @@ try {
   $card = $culqi->Cards->create(
     array(
       "customer_id" => $_POST["customerId"],
-      "token_id" => $_POST["tokenId"]
+      "token_id" => $_POST["tokenId"],
+      "validate" => 'false'
     )
   );
   // Respuesta

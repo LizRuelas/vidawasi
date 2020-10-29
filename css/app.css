@@ -13,7 +13,7 @@ body {
   background-image: url(donacion_bg.jpg);
   height: 910px;
   background-position: right;
-  background-position-x: -300px;
+  background-position-x: -210px;
 }
 .multi_step_form #msform {
   text-align: center;
@@ -373,4 +373,10 @@ body {
 
 .bg-white {
   color: #ffffff !important;
+}
+
+#terms {
+  color: #E62F32;
+  text-decoration: underline;
+  cursor: pointer;
 }

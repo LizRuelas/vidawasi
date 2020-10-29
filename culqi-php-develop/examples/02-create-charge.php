@@ -19,7 +19,8 @@ try {
         "email" => $_POST["email"],
         "source_id" => $_POST["token"],
         "metadata" => array(
-          "nombre" =>  $_POST["name"] ,
+          "nombre" =>  $_POST["nombre"] ,
+          "apellido" =>  $_POST["apellido"] ,
         ),
       )
   );
